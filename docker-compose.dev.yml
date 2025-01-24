@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres
+    container_name: gonote-postgres
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    env_file:
+      - .env
+
+  redis:
+    image: redis
+    container_name: gonote-redis
+    ports:
+      - ${REDIS_PORT:-6379}:6379  
+    env_file:
+      - .env
