@@ -15,3 +15,15 @@ spring:
     redis:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
+
+gonote:
+  jwt:
+    public-key:
+      path: ${JWT_PUBLIC_KEY_PATH:file:.keys/public.pem}
+    private-key:
+      path: ${JWT_PRIVATE_KEY_PATH:file:.keys/private.pem}
+    access-token:
+      lifespan: ${JWT_ACCESS_TOKEN_LIFESPAN:15m}
+    refresh-token:
+      lifespan: ${JWT_REFRESH_TOKEN_LIFESPAN:1d}
+    
