@@ -48,6 +48,10 @@ public class UserService {
         return userRepository.existsByEmail(email);
     }
 
+    public boolean existsById(UUID id) {
+        return userRepository.existsById(id);
+    }
+
     public UUID getCurrentUserId() {
         JwtAuthenticationToken authentication = (JwtAuthenticationToken) SecurityContextHolder.getContext()
                 .getAuthentication();
