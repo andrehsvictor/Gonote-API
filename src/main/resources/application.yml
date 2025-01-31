@@ -18,6 +18,7 @@ spring:
 
 gonote:
   jwt:
+    audience: ${JWT_AUDIENCE:gonote}
     public-key:
       path: ${JWT_PUBLIC_KEY_PATH:file:.keys/public.pem}
     private-key:
