@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.stereotype.Service;
 
 import andrehsvictor.gonote.exception.ResourceConflictException;
-import andrehsvictor.gonote.exception.ResourceNotFountException;
+import andrehsvictor.gonote.exception.ResourceNotFoundException;
 import andrehsvictor.gonote.user.dto.CreateUserDto;
 import andrehsvictor.gonote.user.dto.UpdateUserDto;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +37,7 @@ public class UserService {
     }
 
     public User findById(UUID id) {
-        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFountException(User.class, "ID", id));
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(User.class, "ID", id));
     }
 
     public void delete() {
