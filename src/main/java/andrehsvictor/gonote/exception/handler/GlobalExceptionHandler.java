@@ -1,6 +1,7 @@
 package andrehsvictor.gonote.exception.handler;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -28,5 +29,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResourceConflictException.class)
     public final ResponseEntity<ErrorsDto<String>> handleResourceConflictException(ResourceConflictException ex) {
         return ResponseEntity.status(409).body(ErrorsDto.of(ex.getMessage()));
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public final ResponseEntity<ErrorsDto<String>> handleAuthenticationException(AuthenticationException ex) {
+        return ResponseEntity.status(401).body(ErrorsDto.of(ex.getMessage()));
     }
 }
