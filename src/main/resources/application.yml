@@ -30,4 +30,7 @@ gonote:
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:*}
     allowed-methods: ${CORS_ALLOWED_METHODS:*}
+  google:
+    client-id: ${GOOGLE_CLIENT_ID}
+    client-secret: ${GOOGLE_CLIENT_SECRET}
     
