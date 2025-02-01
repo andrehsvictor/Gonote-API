@@ -1,5 +1,6 @@
 package andrehsvictor.gonote.user;
 
+import org.mapstruct.AfterMapping;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -18,5 +19,12 @@ public interface UserMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     User updateUserFromPutUserDto(PutUserDto putUserDto, @MappingTarget User user);
+
+    @AfterMapping
+    default void afterUpdateUserFromPutUserDto(PutUserDto putUserDto, @MappingTarget User user) {
+        if (putUserDto.getAvatarUrl() != null && putUserDto.getAvatarUrl().isBlank()) {
+            user.setAvatarUrl(null);
+        }
+    }
 
 }
