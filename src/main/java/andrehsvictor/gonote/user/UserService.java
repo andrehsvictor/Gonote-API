@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import andrehsvictor.gonote.exception.ResourceConflictException;
 import andrehsvictor.gonote.exception.ResourceNotFoundException;
-import andrehsvictor.gonote.user.dto.CreateUserDto;
-import andrehsvictor.gonote.user.dto.UpdateUserDto;
+import andrehsvictor.gonote.user.dto.PostUserDto;
+import andrehsvictor.gonote.user.dto.PutUserDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -19,20 +19,20 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public User create(CreateUserDto createUserDto) {
-        if (existsByEmail(createUserDto.getEmail())) {
+    public User create(PostUserDto postUserDto) {
+        if (existsByEmail(postUserDto.getEmail())) {
             throw new ResourceConflictException("Email already exists");
         }
-        User user = userMapper.createUserDtoToUser(createUserDto);
+        User user = userMapper.postUserDtoToUser(postUserDto);
         return userRepository.save(user);
     }
 
-    public User update(UpdateUserDto updateUserDto) {
-        if (existsByEmail(updateUserDto.getEmail())) {
+    public User update(PutUserDto putUserDto) {
+        if (existsByEmail(putUserDto.getEmail())) {
             throw new ResourceConflictException("Email already exists");
         }
         User user = findById(getCurrentUserId());
-        userMapper.updateUserFromUpdateUserDto(updateUserDto, user);
+        userMapper.updateUserFromPutUserDto(putUserDto, user);
         return userRepository.save(user);
     }
 

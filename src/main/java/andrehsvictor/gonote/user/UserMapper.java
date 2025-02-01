@@ -5,18 +5,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
-import andrehsvictor.gonote.user.dto.CreateUserDto;
-import andrehsvictor.gonote.user.dto.UpdateUserDto;
-import andrehsvictor.gonote.user.dto.UserDto;
+import andrehsvictor.gonote.user.dto.PostUserDto;
+import andrehsvictor.gonote.user.dto.PutUserDto;
+import andrehsvictor.gonote.user.dto.GetUserDto;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    UserDto userToUserDto(User user);
+    GetUserDto userToGetUserDto(User user);
 
-    User createUserDtoToUser(CreateUserDto createUserDto);
+    User postUserDtoToUser(PostUserDto postUserDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    User updateUserFromUpdateUserDto(UpdateUserDto updateUserDto, @MappingTarget User user);
+    User updateUserFromPutUserDto(PutUserDto putUserDto, @MappingTarget User user);
 
 }
