@@ -9,6 +9,7 @@ public class GetUserDto {
     private String id;
     private String name;
     private String email;
+    private boolean emailVerified;
     private String provider;
     private String avatarUrl;
     private String createdAt;
