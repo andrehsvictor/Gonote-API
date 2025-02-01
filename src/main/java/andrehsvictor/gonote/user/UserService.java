@@ -3,6 +3,7 @@ package andrehsvictor.gonote.user;
 import java.util.UUID;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final UserMapper userMapper;
 
@@ -31,6 +33,7 @@ public class UserService {
             throw new ResourceConflictException("Email already exists");
         }
         User user = userMapper.postUserDtoToUser(postUserDto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
