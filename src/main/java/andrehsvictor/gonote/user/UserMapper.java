@@ -6,9 +6,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
+import andrehsvictor.gonote.user.dto.GetUserDto;
 import andrehsvictor.gonote.user.dto.PostUserDto;
 import andrehsvictor.gonote.user.dto.PutUserDto;
-import andrehsvictor.gonote.user.dto.GetUserDto;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
