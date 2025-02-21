@@ -27,6 +27,7 @@ public class JwtTypeFilter extends OncePerRequestFilter {
             Jwt jwt = jwtService.decode(token);
             if (!jwt.getClaim("type").equals("access")) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("");
                 response.getWriter().close();
                 return;
             }
