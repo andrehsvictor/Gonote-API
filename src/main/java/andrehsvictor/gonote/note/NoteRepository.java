@@ -18,4 +18,8 @@ public interface NoteRepository extends JpaRepository<Note, UUID> {
             "AND (:query IS NULL OR n.title ILIKE %:query% OR n.content ILIKE %:query%)")
     Page<Note> queryAllByUserId(UUID userId, String query, Pageable pageable);
 
+    Page<Note> findAllByUserIdAndTitleContainingIgnoreCase(UUID userId, String title, Pageable pageable);
+
+    Page<Note> findAllByUserIdAndContentContainingIgnoreCase(UUID userId, String content, Pageable pageable);
+
 }
